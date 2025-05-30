@@ -5,15 +5,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const PORT = process.env.PORT;
 const app = express();
-app.use(express.json());
 
-app.use('/api/notes', notesRoutes);
+const PORT = process.env.PORT;
 
 connectDB();
 
-//Middleware
+app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log('W got a new req');
+  next()
+})
+
+app.use('/api/notes', notesRoutes);
 
 app.listen(PORT, () => {
   console.log('Server on port', PORT);
