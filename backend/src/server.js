@@ -5,13 +5,16 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 const app = express();
 
 app.use('/api/notes', notesRoutes);
 
 connectDB();
 
+//Middleware
+app.use(express.json());
+
 app.listen(PORT, () => {
-  console.log('Server on port 3000');
+  console.log('Server on port', PORT);
 });
