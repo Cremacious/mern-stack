@@ -11,13 +11,13 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-app.use(express.json());
-app.use(rateLimiter);
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Remove trailing slash
+    origin: 'http://localhost:5173', 
   })
 );
+app.use(express.json());
+app.use(rateLimiter);
 
 app.use('/api/notes', notesRoutes);
 
